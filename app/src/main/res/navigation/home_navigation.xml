@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/dashboardFragment">
+<!--  ToDo animation  -->
+
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/viewFragment"
+        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.ViewFragment"
+        android:label="fragment_view"
+        tools:layout="@layout/fragment_view" />
+</navigation>
