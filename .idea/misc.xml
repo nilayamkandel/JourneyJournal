@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_landing.xml" value="0.20416666666666666" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_register.xml" value="0.20416666666666666" />
         <entry key="..\:/JourneyJournal/app/src/main/res/menu/option_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
