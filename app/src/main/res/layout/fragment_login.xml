@@ -4,16 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragment.auth.LoginFragment">
+    tools:context=".presentation.fragment.auth.LoginFragment"
+    android:background="@drawable/bgg"
+    >
+
+    <ImageView
+        android:id="@+id/lp_Img"
+        android:layout_width="221dp"
+        android:layout_height="154dp"
+        android:padding="20dp"
+        android:src="@drawable/user"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lp_tfEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintHeight_percent=".1"
-        android:layout_margin="31dp"
+        android:layout_margin="61dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,9 +47,11 @@
         android:id="@+id/lp_tfPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintHeight_percent=".1"
         android:hint="Password"
-        app:layout_constraintHeight="55dp"
-        android:layout_margin="31dp"
+        android:layout_marginLeft="61dp"
+        android:layout_marginRight="61dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lp_tfEmail">
         <com.google.android.material.textfield.TextInputEditText
@@ -44,31 +61,94 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/lpLogin_btn"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:backgroundTint="@color/primaryDarkColor"
-        app:layout_constraintTop_toBottomOf="@+id/lp_tfPassword"
-        android:layout_margin="30dp"
-        android:text="@string/lp_button"
-        android:textColor="@color/black">
-    </com.google.android.material.button.MaterialButton>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id = "@+id/lp_Fab"
+    <TextView
+        android:id="@+id/tv_ForgetPwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Forget Password?"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/lp_tfPassword"
+        app:layout_constraintTop_toBottomOf="@+id/lp_tfPassword" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/lpLogin_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="68dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:paddingLeft="20dp"
+        android:text="@string/lp_button"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:elevation="25dp"
-        android:src = "@drawable/google"
-        android:backgroundTint="@color/primaryColor"
-        android:layout_marginBottom="30dp">
+        app:layout_constraintTop_toBottomOf="@+id/tv_ForgetPwd">
 
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </com.google.android.material.button.MaterialButton>
 
+    <TextView
+        android:id="@+id/tv_Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/lp_Register"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/lpLogin_btn"
+        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lpLogin_btn" />
 
+    <TextView
+        android:id="@+id/tv_Registers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/tv_Register"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/lp_Registers"
+        android:textColor="@color/purple_700"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_Register"
+        app:layout_constraintStart_toEndOf="@+id/tv_Register"
+        app:layout_constraintTop_toTopOf="@+id/tv_Register"
+        app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/tv_SignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="@string/lp_SignIn"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/lpLogin_btn"
+        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Registers" />
+
+    <ImageButton
+        android:id="@+id/lp_Fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_SignIn" />
+
+    <ImageButton
+        android:id="@+id/lp_Twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_twitter"
+        app:layout_constraintStart_toEndOf="@+id/lp_Fab"
+        app:layout_constraintTop_toTopOf="@+id/lp_Fab" />
 </androidx.constraintlayout.widget.ConstraintLayout>

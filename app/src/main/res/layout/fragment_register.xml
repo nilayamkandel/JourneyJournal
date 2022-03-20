@@ -6,17 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragment.auth.RegisterFragment">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/rp_tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Welcome to registration process"
-        android:layout_margin="31dp"
-        app:layout_constraintHeight="55dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.google.android.material.textview.MaterialTextView>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfUsername"
@@ -27,7 +16,6 @@
         app:layout_constraintHeight="55dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rp_tvTitle"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -51,7 +39,6 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfPassword"
         android:layout_width="match_parent"
@@ -66,7 +53,6 @@
             android:layout_height="wrap_content"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfConfirmPassword"
@@ -83,30 +69,46 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/rp_tfAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Address"
-        app:layout_constraintHeight="55dp"
-        android:layout_margin="31dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rp_tfConfirmPassword">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/rp_btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="3dp"
-        app:layout_constraintTop_toBottomOf="@id/rp_tfAddress"
-        android:layout_margin="45dp"
+        android:backgroundTint="@color/primaryDarkColor"
+        app:layout_constraintTop_toBottomOf="@id/rp_tfConfirmPassword"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginLeft="90dp"
         android:textSize="20sp"
         android:text="Register"
+        android:textColor="@color/black"
         />
 
+    <TextView
+        android:id="@+id/tv_Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/lp_account"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/rp_btnRegister"
+        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rp_btnRegister" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/tv_Register"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/rp_logins"
+        android:textColor="@color/purple_700"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_Register"
+        app:layout_constraintStart_toEndOf="@+id/tv_Register"
+        app:layout_constraintTop_toTopOf="@+id/tv_Register"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

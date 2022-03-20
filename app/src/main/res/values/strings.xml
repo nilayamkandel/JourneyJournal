@@ -10,6 +10,11 @@
     <string name="lp_email">Email</string>
     <string name="lp_password">Password</string>
     <string name="lp_button">Login</string>
+    <string name="lp_Register">Dont have an account?</string>
+    <string name="lp_account">Already have an account?</string>
+    <string name="lp_Registers">Register</string>
+    <string name="rp_logins">Login</string>
+    <string name="lp_SignIn">Also Quick SignIn with</string>
     <string name="hello_home_fragment">Hello Home fragment</string>
     <string name="title_home">Home</string>
     <string name="detail">Detail</string>

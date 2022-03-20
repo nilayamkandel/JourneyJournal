@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragment.auth.LandingFragment">
-
+    tools:context=".presentation.fragment.auth.LandingFragment"
+    android:background="@drawable/img_3"
+    >
 
     <Button
         android:id="@+id/btn_login"
