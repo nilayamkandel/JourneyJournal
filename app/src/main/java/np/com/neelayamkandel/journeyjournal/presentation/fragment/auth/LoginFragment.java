@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -19,6 +20,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import np.com.neelayamkandel.journeyjournal.R;
 import np.com.neelayamkandel.journeyjournal.presentation.activity.HomeActivity;
 import np.com.neelayamkandel.journeyjournal.viewmodel.LoginViewModel;
@@ -26,15 +29,20 @@ import np.com.neelayamkandel.journeyjournal.viewmodel.LoginViewModel;
 public class LoginFragment extends Fragment {
     private Button  Login;
     private TextView Register;
+    private TextInputLayout lp_tfEmail;
+    private TextInputLayout lp_tfPassword;
     private TextView ForgetPassword;
     private NavController navController;
+    private LoginViewModel loginViewModel;
+
 
     private void handleButtonTrigger(){
         Register.setOnClickListener(event->navController.navigate(R.id.action_loginFragment_to_registerFragment));
         Login.setOnClickListener(event->{
-            Intent intent = new Intent(requireActivity(), HomeActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
+//            Intent intent = new Intent(requireActivity(), HomeActivity.class);
+//            startActivity(intent);
+//            requireActivity().finish();
+            loginViewModel.validateLoginCredentials(lp_tfEmail.getEditText().getText().toString().trim(), lp_tfPassword.getEditText().getText().toString().trim());
         });
         ForgetPassword.setOnClickListener(event->navController.navigate(R.id.action_loginFragment_to_forgetPasswordFragment));
     }
@@ -43,12 +51,19 @@ public class LoginFragment extends Fragment {
         Register = view.findViewById(R.id.tv_Registers);
         Login = view.findViewById(R.id.lpLogin_btn);
         ForgetPassword = view.findViewById(R.id.tv_ForgetPwd);
+        lp_tfEmail = view.findViewById(R.id.lp_tfEmail);
+        lp_tfPassword = view.findViewById(R.id.lp_tfPassword);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        observeMutableLiveData();
+        bindViewModel();
+    }
+
+    private void bindViewModel() {
+        loginViewModel = new ViewModelProvider(LoginFragment.this)
+                .get(LoginViewModel.class);
     }
 
     private void observeMutableLiveData() {
@@ -56,14 +71,13 @@ public class LoginFragment extends Fragment {
     }
 
     private void observeIsEmailOrPasswordEmptyLiveData() {
-        LoginViewModel.isEmailOrPasswordEmpty.observe(
-                LoginFragment.this,
+        loginViewModel.isEmail.observe(
+                getViewLifecycleOwner(),
                 new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean isEmpty) {
                         if (isEmpty) {
-                            Log.i(tagName, "observeIsEmailOrPasswordEmptyLiveData: " + isEmpty);
-                            Toast.makeText(LoginFragment.this, "Email or Password is Empty", Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireContext(), "Email or Password is Empty", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -75,7 +89,6 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         this.extractElements(view);
         return view;
-
     }
 
     @Override
@@ -83,5 +96,6 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         this.handleButtonTrigger();
+        observeMutableLiveData();
     }
 }
