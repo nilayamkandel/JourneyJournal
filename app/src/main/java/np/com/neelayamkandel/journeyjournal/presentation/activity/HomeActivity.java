@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,15 +15,19 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import np.com.neelayamkandel.journeyjournal.R;
 
 public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavHostFragment navHostFragment;
     private NavController navController;
+    private FloatingActionButton floating_action_button;
 
     private void extractElement() {
         toolbar = findViewById(R.id.home_toolbar);
+        floating_action_button = findViewById(R.id.floating_action_button);
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         if (navHostFragment != null) {
             navController = navHostFragment.getNavController();
@@ -32,6 +37,32 @@ public class HomeActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         }
     }
+
+    private void setUpComponents() {
+        // Step 3: Show view Based on Navigation Argument
+        this.showViewsBasedOnNavigationArguments();
+    }
+
+    private void buttonTriggerEvents(){
+        floating_action_button.setOnClickListener(event->{
+            navController.navigate(R.id.createFragment);
+        });
+    }
+
+    private void showViewsBasedOnNavigationArguments() {
+        navController.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
+            if (bundle == null) return;
+            // Condition 1: Show Fab Based on Argument passed from safe args
+            if(bundle.getBoolean(getString(R.string.args_show_fab))){
+                // Hide Fab on True
+                floating_action_button.setVisibility(View.VISIBLE);
+            }else{
+               // Show Fab on False
+                floating_action_button.setVisibility(View.GONE);
+            }
+        });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,6 +90,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         extractElement();
+        // Step 3: Setup Components
+        setUpComponents();
+        // Step 4: Handle Button Trigger events
+        buttonTriggerEvents();
     }
 
 

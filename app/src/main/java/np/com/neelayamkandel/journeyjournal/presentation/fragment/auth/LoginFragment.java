@@ -39,10 +39,10 @@ public class LoginFragment extends Fragment {
     private void handleButtonTrigger(){
         Register.setOnClickListener(event->navController.navigate(R.id.action_loginFragment_to_registerFragment));
         Login.setOnClickListener(event->{
-//            Intent intent = new Intent(requireActivity(), HomeActivity.class);
-//            startActivity(intent);
-//            requireActivity().finish();
             loginViewModel.validateLoginCredentials(lp_tfEmail.getEditText().getText().toString().trim(), lp_tfPassword.getEditText().getText().toString().trim());
+            Intent intent = new Intent(requireActivity(), HomeActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
         });
         ForgetPassword.setOnClickListener(event->navController.navigate(R.id.action_loginFragment_to_forgetPasswordFragment));
     }

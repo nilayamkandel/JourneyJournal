@@ -17,6 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import np.com.neelayamkandel.journeyjournal.R;
 
 public class DashboardRecyclerViewAdapter extends RecyclerView.Adapter<DashboardRecyclerViewAdapter.DashboardRecyclerViewHolder>{
+    private final DashboardHelper dashboardHelper;
+
+    public DashboardRecyclerViewAdapter(DashboardHelper dashboardHelper) {
+        this.dashboardHelper = dashboardHelper;
+    }
+
     @NonNull
     @Override
     public DashboardRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,7 +50,9 @@ public class DashboardRecyclerViewAdapter extends RecyclerView.Adapter<Dashboard
             // ToDo: extract data from cardview using id and handle click event
 
             img_view = itemView.findViewById(R.id.image);
-
+            itemView.setOnClickListener(view->{
+                dashboardHelper.SetOnItemClickListener();
+            });
         }
     }
 }
