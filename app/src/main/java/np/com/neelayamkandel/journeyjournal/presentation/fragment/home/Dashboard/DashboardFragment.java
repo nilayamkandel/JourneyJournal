@@ -35,7 +35,6 @@ public class DashboardFragment extends Fragment implements  DashboardHelper {
     private void initListElement(){
         this.recyclerView.setLayoutManager(this.linearLayoutManager);
         this.recyclerView.setAdapter(this.dashboardRecyclerViewAdapter);
-
     }
 
     @Override

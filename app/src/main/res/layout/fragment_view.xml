@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
         android:id="@+id/view_Title"
         android:layout_width="match_parent"
         android:drawablePadding="10dp"
@@ -47,39 +47,48 @@
         app:layout_constraintTop_toBottomOf="@id/view_Title"
         tools:layout_editor_absoluteX="36dp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
         android:id="@+id/view_Description"
-        android:layout_width="403dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="20dp"
-        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_Title"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="10dp"
+        android:padding="25dp"
         android:text="@string/descriptions"
-        android:textColor="@color/black"
         android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_Date"
-        tools:layout_editor_absoluteX="9dp" />
+        tools:layout_editor_absoluteX="36dp" />
 
     <Button
         android:id="@+id/view_btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="288dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginBottom="8dp"
         android:drawableLeft="@drawable/ic_baseline_edit_24"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10dp"
         android:text="@string/edit"
-        app:layout_constraintTop_toBottomOf="@id/view_Description" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view_btnDelete"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_Description"
+        app:layout_constraintVertical_bias="0.761" />
 
     <Button
         android:id="@+id/view_btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="288dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="8dp"
         android:drawableLeft="@drawable/ic_baseline_delete_24"
+        android:padding="10dp"
+        android:text="@string/delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/dlt"
-        app:layout_constraintTop_toBottomOf="@id/view_btnEdit" />
+        app:layout_constraintTop_toBottomOf="@id/view_Description"
+        app:layout_constraintVertical_bias="0.761" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

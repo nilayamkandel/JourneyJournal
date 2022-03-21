@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
         android:id="@+id/create_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,24 +49,24 @@
         app:layout_constraintTop_toBottomOf="@id/create_Title"
         tools:layout_editor_absoluteX="36dp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
         android:id="@+id/create_Description"
-        android:layout_width="403dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="20dp"
-        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="10dp"
+        android:padding="25dp"
         android:text="@string/descriptions"
-        android:textColor="@color/black"
         android:textSize="26sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/create_Date" />
+        app:layout_constraintTop_toBottomOf="@id/create_Date"
+        tools:layout_editor_absoluteX="36dp" />
 
 
     <Button
         android:id="@+id/create_btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="288dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="32dp"
         android:drawableLeft="@drawable/ic_baseline_save"
         app:layout_constraintStart_toStartOf="parent"
