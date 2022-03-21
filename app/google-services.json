@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "814824510551",
+    "project_id": "journeycet313",
+    "storage_bucket": "journeycet313.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814824510551:android:34fe988417a6c57bb5ff12",
+        "android_client_info": {
+          "package_name": "np.com.neelayamkandel.journeyjournal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814824510551-spbaouvp8q7vld726labn9a77hl008lj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwDWMAyM9p8dsvoXUZJJLVWw7bOBi1WR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814824510551-spbaouvp8q7vld726labn9a77hl008lj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

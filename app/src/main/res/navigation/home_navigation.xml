@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
@@ -10,20 +10,57 @@
         android:id="@+id/createFragment"
         android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.CreateFragment"
         android:label="fragment_create"
-        tools:layout="@layout/fragment_create" />
+        tools:layout="@layout/fragment_create"
+        >
+        <argument
+            android:name="@string/args_show_fab"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+
     <fragment
         android:id="@+id/editFragment"
         android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.EditFragment"
         android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" />
+        tools:layout="@layout/fragment_edit" >
+        <argument
+            android:name="@string/args_show_fab"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.DashboardFragment"
+        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <argument
+            android:name="@string/args_show_fab"
+            android:defaultValue="true"
+            app:argType="boolean" />
+    </fragment>
+
     <fragment
         android:id="@+id/viewFragment"
         android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.ViewFragment"
         android:label="fragment_view"
-        tools:layout="@layout/fragment_view" />
-</navigation>
+        tools:layout="@layout/fragment_view" >
+        <argument
+            android:name="@string/args_show_fab"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.ProfileFragment"
+        android:label="fragment_profile"
+       tools:layout="@layout/fragment_profile" >
+    <argument
+        android:name="@string/args_show_fab"
+        android:defaultValue="false"
+        app:argType="boolean" />
+    </fragment>
+
+</fragment>

@@ -10,18 +10,21 @@ import android.view.ViewGroup;
 
 import np.com.neelayamkandel.journeyjournal.R;
 
-public class DashboardFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
+
+    public ProfileFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

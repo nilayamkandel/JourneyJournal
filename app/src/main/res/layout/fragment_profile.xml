@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragment.home.ProfileFragment">
+
+    <ImageView
+        android:id="@+id/pp_Img"
+        android:layout_width="221dp"
+        android:layout_height="154dp"
+        android:padding="20dp"
+        android:src="@drawable/user"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="72dp"
+        android:layout_toEndOf="@+id/pp_Img"
+        android:src="@drawable/ic_baseline_photo_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/pp_Img"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/pp_email"
+        android:layout_width="374dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="64dp"
+        android:hint="@string/email"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@+id/pp_Img"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/pp_userName"
+        android:layout_width="374dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/userName"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@+id/pp_email"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="32dp"
+        android:drawableLeft="@drawable/ic_baseline_update"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/update"
+        app:layout_constraintTop_toBottomOf="@id/pp_userName" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

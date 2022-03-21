@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragment.auth.RegisterFragment">
-
+    tools:context=".presentation.fragment.auth.RegisterFragment"
+    android:background="@drawable/bg"
+    >
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="username"
+        android:hint="@string/userName"
         android:layout_margin="31dp"
         app:layout_constraintHeight="55dp"
         app:layout_constraintStart_toStartOf="parent"
