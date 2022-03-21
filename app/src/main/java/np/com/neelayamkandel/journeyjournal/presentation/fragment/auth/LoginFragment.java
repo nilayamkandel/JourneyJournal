@@ -68,20 +68,36 @@ public class LoginFragment extends Fragment {
 
     private void observeMutableLiveData() {
         observeIsEmailEmpty();
+        observeIsPasswordEmpty();
     }
 
     private void observeIsEmailEmpty() {
         loginViewModel.isEmailEmpty.observe(
-                getViewLifecycleOwner(),
-                new Observer<Boolean>() {
-                    @Override
-                    public void onChanged(Boolean isEmpty) {
-                        if (isEmpty) {
-                            Toast.makeText(requireContext(), "Email is Empty", Toast.LENGTH_LONG).show();
-                        }
+                getViewLifecycleOwner(), helperViewModel -> {
+                    if(helperViewModel.isSuccess()){
+                        lp_tfEmail.setError(helperViewModel.getMessage());
                     }
+                    else{
+                        lp_tfEmail.setError(null);
+                    }
+
                 });
     }
+
+    private void observeIsPasswordEmpty() {
+        loginViewModel.isPasswordEmpty.observe(
+                getViewLifecycleOwner(), helperViewModel -> {
+                    if(helperViewModel.isSuccess()){
+                        lp_tfPassword.setError(helperViewModel.getMessage());
+                    }
+                    else{
+                        lp_tfPassword.setError(null);
+                    }
+
+                });
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
