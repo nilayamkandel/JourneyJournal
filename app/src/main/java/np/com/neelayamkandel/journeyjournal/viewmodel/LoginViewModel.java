@@ -9,20 +9,18 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class LoginViewModel extends AndroidViewModel {
-    public final MutableLiveData<Boolean> isEmail = new MutableLiveData<>();
+    public final MutableLiveData<Boolean> isEmailEmpty = new MutableLiveData<>();
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
     }
 
-
-
     public void validateLoginCredentials(String email, String password){
-        if (email.isEmpty() || password.isEmpty()) {
-            isEmail.setValue(true);
+        if (email.isEmpty()) {
+            isEmailEmpty.setValue(true);
             return;
         } else {
-            isEmail.setValue(false);
+            isEmailEmpty.setValue(false);
         }
     }
 

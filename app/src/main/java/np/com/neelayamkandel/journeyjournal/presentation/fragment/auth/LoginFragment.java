@@ -67,17 +67,17 @@ public class LoginFragment extends Fragment {
     }
 
     private void observeMutableLiveData() {
-        observeIsEmailOrPasswordEmptyLiveData();
+        observeIsEmailEmpty();
     }
 
-    private void observeIsEmailOrPasswordEmptyLiveData() {
-        loginViewModel.isEmail.observe(
+    private void observeIsEmailEmpty() {
+        loginViewModel.isEmailEmpty.observe(
                 getViewLifecycleOwner(),
                 new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean isEmpty) {
                         if (isEmpty) {
-                            Toast.makeText(requireContext(), "Email or Password is Empty", Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireContext(), "Email is Empty", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
