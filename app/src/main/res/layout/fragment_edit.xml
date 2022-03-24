@@ -61,15 +61,35 @@
         tools:layout_editor_absoluteX="9dp" />
 
     <Button
-        android:id="@+id/btn_edit"
+        android:id="@+id/ep_btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="288dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginBottom="8dp"
         android:drawableLeft="@drawable/ic_baseline_edit_24"
+        android:padding="10dp"
+        android:text="@string/edt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ep_btnDelete"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/edit"
-        app:layout_constraintTop_toBottomOf="@id/txt_Description" />
+        app:layout_constraintTop_toBottomOf="@id/txt_Description"
+        app:layout_constraintVertical_bias="0.761" />
+
+    <Button
+        android:id="@+id/ep_btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="8dp"
+        android:drawableLeft="@drawable/ic_baseline_save"
+        android:padding="10dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_Description"
+        app:layout_constraintVertical_bias="0.761" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
