@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import np.com.neelayamkandel.journeyjournal.dao.auth.login.Login;
+import np.com.neelayamkandel.journeyjournal.dao.auth.login.LoginProfile;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.RegistrationForm;
 import np.com.neelayamkandel.journeyjournal.model.auth.RegistrationModel;
+import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 
 public class FirebaseAuthImpl {
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -16,6 +19,7 @@ public class FirebaseAuthImpl {
 
 
     private final MutableLiveData<RegistrationModel> isRegistrationSuccess = new MutableLiveData<>();
+    private final MutableLiveData<UserProfileModel> isLoginSuccess = new MutableLiveData<>();
 
     public FirebaseAuthImpl(){
         if (auth.getCurrentUser() != null) {
@@ -50,6 +54,37 @@ public class FirebaseAuthImpl {
                     }
                 });
         return isRegistrationSuccess;
+    }
+
+    public MutableLiveData<UserProfileModel> login(Login login){
+    //step-1 call firebase auth login method
+        auth.signInWithEmailAndPassword(login.getEmail(), login.getPassword())
+                .addOnCompleteListener(loginData->{
+                    if(loginData.isSuccessful()){
+                        //step-2 fetch user details from db
+                        database.getDatabase()
+                                .getReference("Account")
+                                .child(loginData.getResult().getUser().getUid())
+                                .get()
+                                .addOnCompleteListener(profileData->{
+                                    if(profileData.isSuccessful()){
+                                        UserProfileModel userProfileModel = new UserProfileModel(true, "Login Success!!");
+                                        userProfileModel.setLoginProfile(new LoginProfile(
+                                                profileData.getResult().getValue(Registration.class),
+                                                loginData.getResult().getUser()
+                                        ));
+                                    }
+                                    else{
+                                        isLoginSuccess.postValue(new UserProfileModel(false, profileData.getException().getMessage()));
+                                    }
+                                });
+                    }
+                    else{
+                        isLoginSuccess.postValue(new UserProfileModel(false, loginData.getException().getMessage()));
+                    }
+                });
+
+        return isLoginSuccess;
     }
 
 }

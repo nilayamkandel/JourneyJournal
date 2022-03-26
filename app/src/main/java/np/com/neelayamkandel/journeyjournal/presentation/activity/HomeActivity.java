@@ -2,6 +2,7 @@ package np.com.neelayamkandel.journeyjournal.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,15 +19,30 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import np.com.neelayamkandel.journeyjournal.R;
+import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 
 public class HomeActivity extends AppCompatActivity {
+    private String TAG =  "J_" + HomeActivity.class.getSimpleName();
+    private UserProfileModel userProfileModel;
     private Toolbar toolbar;
     private NavHostFragment navHostFragment;
     private NavController navController;
     private FloatingActionButton floating_action_button;
+    public void extractElementFromIntent(){
+        if(getIntent()!= null){
+           userProfileModel = getIntent().getParcelableExtra("USERPROFILE");
+            if(userProfileModel != null){
+                Log.d(TAG, "extractElementFromIntent: " + userProfileModel
+                        .getLoginProfile()
+                        .getFirebaseUser()
+                        .getUid());
+            }
+        }
 
+    }
 
     private void extractElement() {
+        userProfileModel = null;
         toolbar = findViewById(R.id.home_toolbar);
         floating_action_button = findViewById(R.id.floating_action_button);
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
@@ -90,11 +106,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        extractElementFromIntent();
         extractElement();
         // Step 3: Setup Components
         setUpComponents();
         // Step 4: Handle Button Trigger events
         buttonTriggerEvents();
+
     }
 
 

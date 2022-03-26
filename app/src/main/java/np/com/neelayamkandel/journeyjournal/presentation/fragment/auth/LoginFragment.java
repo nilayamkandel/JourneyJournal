@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import np.com.neelayamkandel.journeyjournal.presentation.activity.HomeActivity;
 import np.com.neelayamkandel.journeyjournal.viewmodel.LoginViewModel;
 
 public class LoginFragment extends Fragment {
+    private String TAG =  "J_" + LoginFragment.class.getSimpleName();
     private Button  Login;
     private TextView Register;
     private TextInputLayout lp_tfEmail;
@@ -39,10 +41,8 @@ public class LoginFragment extends Fragment {
     private void handleButtonTrigger(){
         Register.setOnClickListener(event->navController.navigate(R.id.action_loginFragment_to_registerFragment));
         Login.setOnClickListener(event->{
-            loginViewModel.validateLoginCredentials(lp_tfEmail.getEditText().getText().toString().trim(), lp_tfPassword.getEditText().getText().toString().trim());
-            Intent intent = new Intent(requireActivity(), HomeActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
+            loginViewModel.validateLoginCredentials(lp_tfEmail.getEditText().getText().toString().trim(),
+                    lp_tfPassword.getEditText().getText().toString().trim(), getViewLifecycleOwner());
         });
         ForgetPassword.setOnClickListener(event->navController.navigate(R.id.action_loginFragment_to_forgetPasswordFragment));
     }
@@ -69,13 +69,34 @@ public class LoginFragment extends Fragment {
     private void observeMutableLiveData() {
         observeIsEmailEmpty();
         observeIsPasswordEmpty();
+        observeIsLoginSuccess();
+    }
+
+    private void observeIsLoginSuccess() {
+        loginViewModel.getIsLoginSuccess().observe(
+                getViewLifecycleOwner(), userProfileModel -> {
+                    Toast.makeText(getContext(), userProfileModel.getMessage(), Toast.LENGTH_LONG).show();
+                    if(userProfileModel.isSuccess()){
+                        Log.d(TAG, "observeIsLoginSuccess: " +userProfileModel
+                                .getLoginProfile()
+                                .getFirebaseUser()
+                        .getUid());
+                        Intent intent = new Intent(requireActivity(), HomeActivity.class);
+                        intent.putExtra("USERPROFILE", (Parcelable) userProfileModel.getLoginProfile());
+                        startActivity(intent);
+                        requireActivity().finish();
+                    }
+
+                }
+        );
     }
 
     private void observeIsEmailEmpty() {
-        loginViewModel.isEmailEmpty.observe(
+        loginViewModel.getIsEmailEmpty().observe(
                 getViewLifecycleOwner(), helperViewModel -> {
                     if(helperViewModel.isSuccess()){
                         lp_tfEmail.setError(helperViewModel.getMessage());
+                        lp_tfEmail.requestFocus();
                     }
                     else{
                         lp_tfEmail.setError(null);
@@ -85,10 +106,11 @@ public class LoginFragment extends Fragment {
     }
 
     private void observeIsPasswordEmpty() {
-        loginViewModel.isPasswordEmpty.observe(
+        loginViewModel.getIsPasswordEmpty().observe(
                 getViewLifecycleOwner(), helperViewModel -> {
                     if(helperViewModel.isSuccess()){
                         lp_tfPassword.setError(helperViewModel.getMessage());
+                        lp_tfPassword.requestFocus();
                     }
                     else{
                         lp_tfPassword.setError(null);

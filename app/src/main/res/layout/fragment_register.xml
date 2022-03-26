@@ -10,10 +10,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfUsername"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/userName"
         android:layout_margin="31dp"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
         app:layout_constraintHeight="55dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,9 +30,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
         app:layout_constraintHeight="55dp"
         android:layout_margin="31dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,9 +48,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
         app:layout_constraintHeight="55dp"
         android:layout_margin="31dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +66,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rp_tfConfirmPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirm Password"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
         app:layout_constraintHeight="55dp"
         android:layout_margin="31dp"
         app:layout_constraintStart_toStartOf="parent"

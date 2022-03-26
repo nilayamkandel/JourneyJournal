@@ -41,7 +41,7 @@ public class LandingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_landing, container, false);
-        // Step 2: Extract Elements from Views (register, login)
+        // Step 2: Extract Elements from Views (register, Login)
         this.extractElements(view);
         return view;
     }

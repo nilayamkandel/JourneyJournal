@@ -73,10 +73,11 @@ public class RegisterFragment extends Fragment {
     }
 
     private void observeIsDisplayNameEmpty() {
-        registerViewModel.isDisplayNameEmpty.observe(
+        registerViewModel.getIsDisplayNameEmpty().observe(
                 getViewLifecycleOwner(), helperViewModel -> {
                     if(helperViewModel.isSuccess()){
                         rp_tfUsername.setError(helperViewModel.getMessage());
+                        rp_tfUsername.requestFocus();
                     }
                     else{
                         rp_tfUsername.setError(null);
@@ -87,10 +88,11 @@ public class RegisterFragment extends Fragment {
     }
 
     private void observeIsEmailEmpty() {
-        registerViewModel.isEmailEmpty.observe(
+        registerViewModel.getIsEmailEmpty().observe(
                 getViewLifecycleOwner(), helperViewModel -> {
                     if(helperViewModel.isSuccess()){
                         rp_tfEmail.setError(helperViewModel.getMessage());
+                        rp_tfEmail.requestFocus();
                     }
                     else{
                         rp_tfEmail.setError(null);
@@ -100,10 +102,11 @@ public class RegisterFragment extends Fragment {
     }
 
     private void observeIsPasswordEmpty() {
-        registerViewModel.isPasswordEmpty.observe(
+        registerViewModel.getIsPasswordEmpty().observe(
                 getViewLifecycleOwner(), helperViewModel -> {
                     if(helperViewModel.isSuccess()){
                         rp_tfPassword.setError(helperViewModel.getMessage());
+                        rp_tfPassword.requestFocus();
                     }
                     else{
                         rp_tfPassword.setError(null);
@@ -113,10 +116,11 @@ public class RegisterFragment extends Fragment {
     }
 
     private void observeIsConfirmPasswordEmpty() {
-        registerViewModel.isConfirmPasswordEmpty.observe(
+        registerViewModel.getIsConfirmPasswordEmpty().observe(
                 getViewLifecycleOwner(), helperViewModel -> {
                     if(helperViewModel.isSuccess()){
                         rp_tfConfirmPassword.setError(helperViewModel.getMessage());
+                        rp_tfConfirmPassword.requestFocus();
                     }
                     else{
                         rp_tfConfirmPassword.setError(null);

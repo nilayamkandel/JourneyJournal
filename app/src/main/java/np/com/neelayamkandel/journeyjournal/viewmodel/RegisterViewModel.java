@@ -15,6 +15,23 @@ import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseAuthImpl
 public class RegisterViewModel extends AndroidViewModel {
     private final FirebaseAuthImpl firebaseAuth = new FirebaseAuthImpl();
     public final MutableLiveData<HelperViewModel> isDisplayNameEmpty = new MutableLiveData<>();
+        public MutableLiveData<HelperViewModel> getIsDisplayNameEmpty() {
+            return isDisplayNameEmpty;
+        }
+
+    public MutableLiveData<HelperViewModel> getIsEmailEmpty() {
+        return isEmailEmpty;
+    }
+
+    public MutableLiveData<HelperViewModel> getIsPasswordEmpty() {
+        return isPasswordEmpty;
+    }
+
+    public MutableLiveData<HelperViewModel> getIsConfirmPasswordEmpty() {
+        return isConfirmPasswordEmpty;
+    }
+
+
     public final MutableLiveData<HelperViewModel> isEmailEmpty = new MutableLiveData<>();
     public final MutableLiveData<HelperViewModel> isPasswordEmpty = new MutableLiveData<>();
     public final MutableLiveData<HelperViewModel> isConfirmPasswordEmpty = new MutableLiveData<>();
@@ -29,39 +46,34 @@ public class RegisterViewModel extends AndroidViewModel {
     }
 
     private final MutableLiveData<SuccessHelper> isRegistrationSuccess = new MutableLiveData<>();
-    public void registrationValidation(RegistrationForm registrationForm, LifecycleOwner owner){
 
-        //todo validation check
-        if(registrationForm.getDisplayName() != null && registrationForm.getEmail() != null && registrationForm.getPassword() != null && registrationForm.getConfirmPassword() != null){
-            firebaseAuth.createUser(registrationForm).observe(owner, successDataSet->isRegistrationSuccess.postValue(new SuccessHelper(successDataSet.isSuccess(), successDataSet.getMessage())));
-        }
-    }
-
-    public void registrationValidation(String displayName, String email, String password, String confirmPassword){
-        if (displayName.isEmpty()) {
-            isDisplayNameEmpty.setValue(new HelperViewModel(true,"Username field is empty"));
+    public void registrationValidation(RegistrationForm registrationForm, LifecycleOwner owner) {
+        if (registrationForm.getDisplayName().isEmpty()) {
+            isDisplayNameEmpty.setValue(new HelperViewModel(true, "Username field is empty"));
             return;
         } else {
             isDisplayNameEmpty.setValue(new HelperViewModel(false));
         }
-        if (email.isEmpty()) {
-            isEmailEmpty.setValue(new HelperViewModel(true,"Email field is empty"));
+        if (registrationForm.getEmail().isEmpty()) {
+            isEmailEmpty.setValue(new HelperViewModel(true, "Email field is empty"));
             return;
         } else {
             isEmailEmpty.setValue(new HelperViewModel(false));
         }
-        if (password.isEmpty()) {
-            isPasswordEmpty.setValue(new HelperViewModel(true,"Password field is empty"));
+        if (registrationForm.getPassword().isEmpty()) {
+            isPasswordEmpty.setValue(new HelperViewModel(true, "Password field is empty"));
             return;
-        } else if(password.length() <= 6 && password.length() <= 20) {
-            isPasswordEmpty.setValue(new HelperViewModel(true,"Password must have 6-20 characters"));
+        } else if (registrationForm.getPassword().length() <= 6 && registrationForm.getPassword().length() <= 20) {
+            isPasswordEmpty.setValue(new HelperViewModel(true, "Password must have 6-20 characters"));
             return;
-        }
-        else {
+        } else {
             isPasswordEmpty.setValue(new HelperViewModel(false));
         }
 
+        //todo validation check
+        if (registrationForm.getDisplayName() != null && registrationForm.getEmail() != null && registrationForm.getPassword() != null && registrationForm.getConfirmPassword() != null) {
+            firebaseAuth.createUser(registrationForm).observe(owner, successDataSet -> isRegistrationSuccess.postValue(new SuccessHelper(successDataSet.isSuccess(), successDataSet.getMessage())));
+        }
 
     }
-
 }
