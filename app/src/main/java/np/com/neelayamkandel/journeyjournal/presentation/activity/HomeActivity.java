@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavController navController;
     private FloatingActionButton floating_action_button;
 
+
     private void extractElement() {
         toolbar = findViewById(R.id.home_toolbar);
         floating_action_button = findViewById(R.id.floating_action_button);

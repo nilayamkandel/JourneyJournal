@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import np.com.neelayamkandel.journeyjournal.R;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardHelper;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardRecyclerViewAdapter;
@@ -22,12 +24,22 @@ import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard
 public class ViewFragment extends Fragment implements  DashboardHelper {
     private NavController navController;
     private Button view_btnEdit;
+    private Button view_btnDelete;
+    private TextInputLayout view_Title;
+    private TextInputLayout view_Date;
+    private TextInputLayout view_Description;
 
-    private void extractElements(View view){
-        Context context = requireContext();
-    }
 
     private void handleButtonTrigger() {
+        view_btnEdit.setOnClickListener(event->navController.navigate(R.id.editFragment));
+    }
+
+    private void extractElements(View view){
+        view_btnEdit = view.findViewById(R.id.view_btnEdit);
+        view_btnDelete = view.findViewById(R.id.view_btnDelete);
+        view_Title = view.findViewById(R.id.view_Title);
+        view_Date = view.findViewById(R.id.view_Title);
+        view_Description = view.findViewById(R.id.view_Title);
     }
 
 
@@ -40,6 +52,7 @@ public class ViewFragment extends Fragment implements  DashboardHelper {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view, container, false);
+        this.extractElements(view);
         return view;
     }
 
@@ -47,6 +60,7 @@ public class ViewFragment extends Fragment implements  DashboardHelper {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController= Navigation.findNavController(view);
+        this.handleButtonTrigger();
     }
 
     public void SetOnItemClickListener() {

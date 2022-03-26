@@ -34,9 +34,6 @@ public class LoginViewModel extends AndroidViewModel {
         else {
             isPasswordEmpty.setValue(new HelperViewModel(false));
         }
-
-
-
     }
 
 }

@@ -22,44 +22,79 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cp_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="72dp"
+        android:layout_toEndOf="@+id/create_image"
+        android:src="@drawable/ic_baseline_photo_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/create_image"
+        app:layout_constraintEnd_toEndOf= "@+id/create_image"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cp_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="72dp"
+        android:layout_toEndOf="@+id/cp_camera"
+        android:src="@drawable/ic_baseline_gallery"
+        app:layout_constraintBottom_toBottomOf="@+id/cp_camera"
+        app:layout_constraintEnd_toEndOf="@+id/cp_camera" />
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/create_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/create_image"
-        android:padding="15dp"
         android:text="@string/title"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        />
+        android:hint="Title"
+        android:textSize="23sp"
+        app:layout_constraintHeight="55dp"
+        android:layout_margin="31dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_image">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/create_Date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/create_Title"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="10dp"
-        android:padding="15dp"
-        android:text="@string/dates"
-        android:textSize="26sp"
-        app:layout_constraintTop_toBottomOf="@id/create_Title"
-        tools:layout_editor_absoluteX="36dp" />
+        android:text="@string/descriptions"
+        android:hint="MM/DD/YY"
+        android:textSize="23sp"
+        app:layout_constraintHeight="55dp"
+        android:layout_margin="31dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_Title">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/create_Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="10dp"
-        android:padding="25dp"
         android:text="@string/descriptions"
-        android:textSize="26sp"
-        app:layout_constraintTop_toBottomOf="@id/create_Date"
-        tools:layout_editor_absoluteX="36dp" />
+        android:hint="Description"
+        android:textSize="23sp"
+        app:layout_constraintHeight="55dp"
+        android:layout_margin="31dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_Date">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button

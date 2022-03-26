@@ -20,45 +20,77 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-        android:id="@+id/txt_Title"
-        android:layout_width="match_parent"
-        android:drawablePadding="10dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ep_camera"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/image"
-        android:padding="15dp"
-        android:text="@string/title"
-        android:textColor="@color/black"
-        android:textSize="26sp"
+        android:layout_marginEnd="72dp"
+        android:layout_toEndOf="@+id/image"
+        android:src="@drawable/ic_baseline_photo_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
+        app:layout_constraintEnd_toEndOf= "@+id/image"
         />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_Date"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ep_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="72dp"
+        android:layout_toEndOf="@+id/ep_camera"
+        android:src="@drawable/ic_baseline_gallery"
+        app:layout_constraintBottom_toBottomOf="@+id/ep_camera"
+        app:layout_constraintEnd_toEndOf="@+id/ep_camera" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_Title"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="10dp"
-        android:padding="15dp"
-        android:text="@string/dates"
-        android:textSize="26sp"
-        app:layout_constraintTop_toBottomOf="@id/txt_Title"
-        tools:layout_editor_absoluteX="36dp" />
-
-    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-        android:id="@+id/txt_Description"
-        android:layout_width="403dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="20dp"
-        android:padding="15dp"
-        android:text="@string/descriptions"
-        android:textColor="@color/black"
-        android:textSize="26sp"
+        android:hint="Title"
+        android:textSize="23sp"
+        app:layout_constraintHeight="55dp"
+        android:layout_margin="31dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_Date"
-        tools:layout_editor_absoluteX="9dp" />
+        app:layout_constraintTop_toBottomOf="@+id/image">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="MM/DD/YY"
+        android:textSize="23sp"
+        app:layout_constraintHeight="55dp"
+        android:layout_margin="31dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Title">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:textSize="23sp"
+        app:layout_constraintHeight="55dp"
+        android:layout_margin="31dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Date">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/ep_btnEdit"
@@ -70,14 +102,14 @@
         android:padding="10dp"
         android:text="@string/edt"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ep_btnDelete"
+        app:layout_constraintEnd_toStartOf="@+id/ep_btnSave"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_Description"
+        app:layout_constraintTop_toBottomOf="@id/edit_Description"
         app:layout_constraintVertical_bias="0.761" />
 
     <Button
-        android:id="@+id/ep_btnDelete"
+        android:id="@+id/ep_btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
@@ -88,7 +120,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_Description"
+        app:layout_constraintTop_toBottomOf="@id/edit_Description"
         app:layout_constraintVertical_bias="0.761" />
 
 

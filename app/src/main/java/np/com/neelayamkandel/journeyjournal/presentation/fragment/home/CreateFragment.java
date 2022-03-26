@@ -24,6 +24,8 @@ import np.com.neelayamkandel.journeyjournal.viewmodel.CreateViewModel;
 public class CreateFragment extends Fragment {
     private Button create_btnSave;
     private TextInputLayout create_Title;
+    private TextInputLayout create_Date;
+    private TextInputLayout create_Description;
     private CreateViewModel createViewModel;
     private NavController navController;
 
@@ -34,6 +36,13 @@ public class CreateFragment extends Fragment {
             startActivity(intent);
             requireActivity().finish();
         });
+    }
+
+    private void extractElements(View view){
+        create_Title = view.findViewById(R.id.create_Title);
+        create_Date = view.findViewById(R.id.create_Date);
+        create_Description = view.findViewById(R.id.create_Description);
+        create_btnSave = view.findViewById(R.id.create_btnSave);
     }
 
     @Override
@@ -48,10 +57,10 @@ public class CreateFragment extends Fragment {
     }
 
     private void observeMutableLiveData(){
-        observeIsLoginEmpty();
+        observeIsTitleEmpty();
     }
 
-    private void observeIsLoginEmpty() {
+    private void observeIsTitleEmpty() {
         createViewModel.isTitleEmpty.observe(
                 getViewLifecycleOwner(), helperViewModel -> {
                     if(helperViewModel.isSuccess()){
@@ -64,10 +73,12 @@ public class CreateFragment extends Fragment {
                 });
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create, container, false);
+        this.extractElements(view);
         return view;
     }
 

@@ -19,13 +19,25 @@
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pp_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
         android:layout_toEndOf="@+id/pp_Img"
         android:src="@drawable/ic_baseline_photo_camera"
         app:layout_constraintBottom_toBottomOf="@+id/pp_Img"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/pp_Img"
+         />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pp_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="72dp"
+        android:layout_toEndOf="@+id/pp_camera"
+        android:src="@drawable/ic_baseline_gallery"
+        app:layout_constraintBottom_toBottomOf="@+id/pp_camera"
+        app:layout_constraintEnd_toEndOf="@+id/pp_camera" />
 
     <TextView
         android:id="@+id/pp_email"
