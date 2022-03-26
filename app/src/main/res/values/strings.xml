@@ -9,7 +9,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="lgn">Login</string>
-    <string name="fp_button">Press</string>
+    <string name="fp_button">Reset</string>
     <string name="userName">UserName</string>
     <string name="lp_Register">Dont have an account?</string>
     <string name="lp_account">Already have an account?</string>

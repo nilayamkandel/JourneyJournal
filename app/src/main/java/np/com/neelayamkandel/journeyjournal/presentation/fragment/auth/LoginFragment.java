@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.Serializable;
+
 import np.com.neelayamkandel.journeyjournal.R;
 import np.com.neelayamkandel.journeyjournal.presentation.activity.HomeActivity;
 import np.com.neelayamkandel.journeyjournal.viewmodel.LoginViewModel;
@@ -76,13 +78,15 @@ public class LoginFragment extends Fragment {
         loginViewModel.getIsLoginSuccess().observe(
                 getViewLifecycleOwner(), userProfileModel -> {
                     Toast.makeText(getContext(), userProfileModel.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "observeIsLoginSuccess: is Success " + userProfileModel.isSuccess());
                     if(userProfileModel.isSuccess()){
                         Log.d(TAG, "observeIsLoginSuccess: " +userProfileModel
                                 .getLoginProfile()
                                 .getFirebaseUser()
                         .getUid());
                         Intent intent = new Intent(requireActivity(), HomeActivity.class);
-                        intent.putExtra("USERPROFILE", (Parcelable) userProfileModel.getLoginProfile());
+                        intent.putExtra("USER", userProfileModel.getLoginProfile().getFirebaseUser());
+                        intent.putExtra("PROFILE", (Serializable) userProfileModel.getLoginProfile().getRegistration());
                         startActivity(intent);
                         requireActivity().finish();
                     }

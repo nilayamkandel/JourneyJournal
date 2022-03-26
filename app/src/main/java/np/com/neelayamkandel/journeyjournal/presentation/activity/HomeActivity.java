@@ -17,32 +17,34 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.internal.zzx;
 
 import np.com.neelayamkandel.journeyjournal.R;
+import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
 import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 
 public class HomeActivity extends AppCompatActivity {
     private String TAG =  "J_" + HomeActivity.class.getSimpleName();
-    private UserProfileModel userProfileModel;
+    private FirebaseUser firebaseuser;
+    private Registration registration;
     private Toolbar toolbar;
     private NavHostFragment navHostFragment;
     private NavController navController;
     private FloatingActionButton floating_action_button;
     public void extractElementFromIntent(){
         if(getIntent()!= null){
-           userProfileModel = getIntent().getParcelableExtra("USERPROFILE");
-            if(userProfileModel != null){
-                Log.d(TAG, "extractElementFromIntent: " + userProfileModel
-                        .getLoginProfile()
-                        .getFirebaseUser()
-                        .getUid());
-            }
+            firebaseuser = getIntent().getParcelableExtra("USER");
+            registration = (Registration) getIntent().getSerializableExtra("PROFILE");
+            Log.d(TAG, "extractElementFromIntent: " + firebaseuser.getUid());
+
+
         }
 
     }
 
     private void extractElement() {
-        userProfileModel = null;
+
         toolbar = findViewById(R.id.home_toolbar);
         floating_action_button = findViewById(R.id.floating_action_button);
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);

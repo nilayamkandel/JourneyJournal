@@ -1,6 +1,8 @@
 package np.com.neelayamkandel.journeyjournal.viewmodel;
 
 import android.app.Application;
+import android.nfc.Tag;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -12,24 +14,22 @@ import androidx.lifecycle.ViewModel;
 import np.com.neelayamkandel.journeyjournal.dao.auth.login.Login;
 import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseAuthImpl;
 import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
+import np.com.neelayamkandel.journeyjournal.presentation.fragment.auth.LoginFragment;
 
 public class LoginViewModel extends AndroidViewModel {
+    private String TAG =  "J_" + LoginViewModel.class.getSimpleName();
     private final FirebaseAuthImpl firebaseAuth = new FirebaseAuthImpl();
     public MutableLiveData<HelperViewModel> getIsEmailEmpty() {
         return isEmailEmpty;
     }
-
     public MutableLiveData<HelperViewModel> getIsPasswordEmpty() {
         return isPasswordEmpty;
     }
-
     public final MutableLiveData<HelperViewModel> isEmailEmpty = new MutableLiveData<>();
     public final MutableLiveData<HelperViewModel> isPasswordEmpty = new MutableLiveData<>();
-
     public MutableLiveData<UserProfileModel> getIsLoginSuccess() {
         return isLoginSuccess;
     }
-
     public final MutableLiveData<UserProfileModel> isLoginSuccess = new MutableLiveData<>();
 
 
@@ -56,7 +56,9 @@ public class LoginViewModel extends AndroidViewModel {
         }
 
         if(!email.isEmpty() && !password.isEmpty()){
+            Log.d(TAG, "validateLoginCredentials: " + email);
             firebaseAuth.login(new Login(email, password)).observe(owner, sucessDataset->{
+                Log.d(TAG, "validateLoginCredentials: " + sucessDataset.isSuccess());
                 isLoginSuccess.postValue(sucessDataset);
             });
 

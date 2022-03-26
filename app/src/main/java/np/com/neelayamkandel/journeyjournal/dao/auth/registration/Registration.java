@@ -1,6 +1,8 @@
 package np.com.neelayamkandel.journeyjournal.dao.auth.registration;
 
-public class Registration {
+import java.io.Serializable;
+
+public class Registration implements Serializable {
     public Registration(String displayName, String email) {
         this.displayName = displayName;
         this.email = email;
