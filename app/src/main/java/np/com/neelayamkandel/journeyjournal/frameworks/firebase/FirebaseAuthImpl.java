@@ -18,13 +18,28 @@ import np.com.neelayamkandel.journeyjournal.viewmodel.HelperViewModel;
 
 public class FirebaseAuthImpl {
     private String TAG =  "J_" + FirebaseAuthImpl.class.getSimpleName();
+
+    public MutableLiveData<UserProfileModel> getIsLoginSuccess() {
+        return isLoginSuccess;
+    }
+
+    private final  MutableLiveData<UserProfileModel> isLoginSuccess = new MutableLiveData<>();
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
     private final FirebaseDbImpl database = new FirebaseDbImpl();
     private final FirebaseStorageImpl storage = new FirebaseStorageImpl();
 
     public FirebaseAuthImpl(){
         if (auth.getCurrentUser() != null) {
-            //todo check if user is null or not
+            database.getDatabase().getReference("Account")
+                    .child(auth.getCurrentUser().getUid())
+            .get().addOnCompleteListener(userData->{
+                UserProfileModel userProfileModel = new UserProfileModel(true, "Welcome Back!!");
+                userProfileModel.setLoginProfile(new LoginProfile(
+                        userData.getResult().getValue(Registration.class),
+                        auth.getCurrentUser()
+                ));
+
+            });
         }
     }
 
@@ -61,7 +76,7 @@ public class FirebaseAuthImpl {
     public MutableLiveData<UserProfileModel> login(Login login){
         Log.d(TAG, "login: "+login.getEmail());
     //step-1 call firebase auth login method
-        MutableLiveData<UserProfileModel> isLoginSuccess = new MutableLiveData<>();
+
         auth.signInWithEmailAndPassword(login.getEmail(), login.getPassword())
                 .addOnCompleteListener(loginData->{
                     Log.d(TAG, "login: loginData" + loginData.isSuccessful());
