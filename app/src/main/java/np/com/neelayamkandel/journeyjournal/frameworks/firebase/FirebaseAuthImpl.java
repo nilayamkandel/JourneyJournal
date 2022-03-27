@@ -1,10 +1,15 @@
 package np.com.neelayamkandel.journeyjournal.frameworks.firebase;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import np.com.neelayamkandel.journeyjournal.dao.auth.login.Login;
@@ -129,6 +134,10 @@ public class FirebaseAuthImpl {
     public void Logout(){
         auth.signOut();
         isLoginSuccess.postValue(new UserProfileModel(false));
+    }
+
+    public void UpdateProfile(FirebaseUser firebaseUser, Registration registration, Uri Image, Context context, LifecycleOwner lifecycleOwner, boolean Camera, Bitmap bitmap){
+
     }
 }
 
