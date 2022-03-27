@@ -56,7 +56,9 @@ public class FirebaseDbImpl {
             }
 //step-2
             storage.getIsUploadSuccess().observe(Owner, successHelper -> {
+
                 if (successHelper.isSuccess()){
+                    journeyDao.setImageUri(successHelper.getMessage());
                     database.getReference(TableName)
                             .child(journeyDao.getUser())
                             .child(Id)
@@ -109,6 +111,7 @@ public class FirebaseDbImpl {
 //step-2
             storage.getIsUploadSuccess().observe(Owner, successHelper -> {
                 if (successHelper.isSuccess()){
+                    journeyDao.setImageUri(successHelper.getMessage());
                     database.getReference(TableName)
                             .child(journeyDao.getUser())
                             .child(JourneyId)
@@ -149,7 +152,33 @@ public class FirebaseDbImpl {
 
 
     public void DeleteJourney(JourneyDao journeyDao,String JourneyId,  LifecycleOwner Owner){
-
+        if(journeyDao.getImageUri()!= null){
+            storage.Delete(journeyDao.getImageUri());
+            storage.getIsDeleteSuccess().observe(Owner, successHelper -> {
+                if(successHelper.isSuccess()){
+                    database
+                    .getReference(TableName)
+                    .child(journeyDao.getUser())
+                    .child(JourneyId).removeValue()
+                    .addOnSuccessListener(Status->{
+                        Deletejourney.postValue(new SuccessHelper(true, "Deleted Successfully!!"));
+                    }).addOnFailureListener(Status->{
+                        Deletejourney.postValue(new SuccessHelper(false, Status.getMessage()));
+                    });
+                }
+            });
+        }
+        else{
+            database
+            .getReference(TableName)
+            .child(journeyDao.getUser())
+            .child(JourneyId).removeValue()
+            .addOnSuccessListener(Status->{
+                Deletejourney.postValue(new SuccessHelper(true, "Deleted Successfully!!"));
+            }).addOnFailureListener(Status->{
+                Deletejourney.postValue(new SuccessHelper(false, Status.getMessage()));
+            });
+        }
     }
 
 
@@ -170,10 +199,6 @@ public class FirebaseDbImpl {
         });
     }
 
-
-
-
-
     public FirebaseDatabase getDatabase() {
         return database;
     }
@@ -187,9 +212,4 @@ public class FirebaseDbImpl {
         long RandomNumberValue = new Date().getTime()/(RandomNumber()*RandomNumber());
         return "JOURNEY_" + RandomNumberValue;
     }
-
-
-
-
-
 }

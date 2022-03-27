@@ -48,8 +48,8 @@ public class ProfileFragment extends Fragment {
     private FloatingActionButton pp_camera;
     private TextInputLayout pp_userName;
     private Button btn_update;
-    private Uri uri;
     private String extractImage;
+    private Uri uri;
     private Bitmap image;
     private boolean camera = false;
     private FirebaseAuthImpl firebaseAuthImpl= new FirebaseAuthImpl();

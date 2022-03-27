@@ -17,16 +17,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import np.com.neelayamkandel.journeyjournal.R;
+import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseDbImpl;
 
 public class DashboardFragment extends Fragment implements  DashboardHelper {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private DashboardRecyclerViewAdapter dashboardRecyclerViewAdapter;
     private NavController navController;
+    private FirebaseDbImpl databaseImpl = new FirebaseDbImpl();
 
     private void extractElements(View view){
         Context context = requireContext();
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+
         this.linearLayoutManager = new LinearLayoutManager(context);
         this.recyclerView = view.findViewById(R.id.rV);
         this.dashboardRecyclerViewAdapter = new DashboardRecyclerViewAdapter(this);

@@ -5,6 +5,26 @@ import com.google.firebase.database.annotations.Nullable;
 import java.io.Serializable;
 
 public class JourneyDao implements Serializable {
+    public void setUser(String user) {
+        User = user;
+    }
+
+    public void setImageUri(String imageUri) {
+        ImageUri = imageUri;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
     public JourneyDao(String user, String imageUri, String title, String date, String description) {
         User = user;
         ImageUri = imageUri;
@@ -41,12 +61,14 @@ public class JourneyDao implements Serializable {
         Description = null;
     }
 
-    private final String User;
+    private  String User;
     @Nullable
-    private final String ImageUri;
-    private final String Title;
-    private final String Date;
-    private final String Description;
+    private  String ImageUri;
+    private  String Title;
+    @Nullable
+    private  String Date;
+    @Nullable
+    private  String Description;
 
 
 }
