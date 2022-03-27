@@ -87,6 +87,9 @@ public class LoginFragment extends Fragment {
                         Intent intent = new Intent(requireActivity(), HomeActivity.class);
                         intent.putExtra("USER", userProfileModel.getLoginProfile().getFirebaseUser());
                         intent.putExtra("PROFILE", (Serializable) userProfileModel.getLoginProfile().getRegistration());
+                        if(userProfileModel.getLoginProfile()){
+
+                        }
                         startActivity(intent);
                         requireActivity().finish();
                     }

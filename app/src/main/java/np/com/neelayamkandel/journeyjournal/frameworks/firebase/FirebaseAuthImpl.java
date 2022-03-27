@@ -10,15 +10,15 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import np.com.neelayamkandel.journeyjournal.dao.auth.login.Login;
 import np.com.neelayamkandel.journeyjournal.dao.auth.login.LoginProfile;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.RegistrationForm;
+import np.com.neelayamkandel.journeyjournal.dao.helper.SuccessHelper;
 import np.com.neelayamkandel.journeyjournal.model.auth.RegistrationModel;
 import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
-import np.com.neelayamkandel.journeyjournal.presentation.fragment.auth.LoginFragment;
 import np.com.neelayamkandel.journeyjournal.viewmodel.HelperViewModel;
 
 public class FirebaseAuthImpl {
@@ -32,6 +32,7 @@ public class FirebaseAuthImpl {
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
     private final FirebaseDbImpl database = new FirebaseDbImpl();
     private final FirebaseStorageImpl storage = new FirebaseStorageImpl();
+    private final MutableLiveData<SuccessHelper> isUpdateSuccess = new MutableLiveData<>();
 
     public FirebaseAuthImpl(){
         if (auth.getCurrentUser() != null) {
@@ -136,8 +137,58 @@ public class FirebaseAuthImpl {
         isLoginSuccess.postValue(new UserProfileModel(false));
     }
 
-    public void UpdateProfile(FirebaseUser firebaseUser, Registration registration, Uri Image, Context context, LifecycleOwner lifecycleOwner, boolean Camera, Bitmap bitmap){
+    public MutableLiveData<SuccessHelper> UpdateProfile(FirebaseUser firebaseUser, Registration registration, Uri Image, Context context, LifecycleOwner lifecycleOwner, boolean Camera, Bitmap bitmap){
+        //step-1 upload image
+        if(Image != null || bitmap != null) {
+            if (Camera) {
+                storage.UploadBitmap(bitmap, "Images/Profile/", firebaseUser.getEmail(), context);
+            } else {
+                storage.UploadUri(Image, "Images/Profile/", firebaseUser.getEmail(), context);
+            }
 
+            //step -2 check image upload success
+
+            storage.getIsUploadSuccess().observe(lifecycleOwner, successHelper -> {
+                if (successHelper.isSuccess()) {
+                    UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setPhotoUri(Uri.parse(successHelper.getMessage())).build();
+                    firebaseUser.updateProfile(userProfileChangeRequest).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            database.getDatabase().getReference("Account")
+                                    .child(firebaseUser
+                                            .getUid())
+                                    .setValue(registration)
+                                    .addOnCompleteListener(status -> {
+                                        if (status.isSuccessful()) {
+                                            isUpdateSuccess.postValue(new SuccessHelper(true, "Profile updated successfully"));
+                                        } else {
+                                            isUpdateSuccess.postValue(new SuccessHelper(false, status.getException().getMessage()));
+                                        }
+                                    });
+                        } else {
+                            isUpdateSuccess.postValue(new SuccessHelper(false, task.getException().getMessage()));
+                        }
+                    });
+                } else {
+                    isUpdateSuccess.postValue(new SuccessHelper(false, successHelper.getMessage()));
+                }
+
+            });
+        }
+        else{
+            database.getDatabase().getReference("Account")
+                    .child(firebaseUser
+                            .getUid())
+                    .setValue(registration)
+                    .addOnCompleteListener(status -> {
+                        if (status.isSuccessful()) {
+                            isUpdateSuccess.postValue(new SuccessHelper(true, "Profile updated successfully"));
+                        } else {
+                            isUpdateSuccess.postValue(new SuccessHelper(false, status.getException().getMessage()));
+                        }
+                    });
+        }
+        //step- 3 update profile
+        return isUpdateSuccess;
     }
 }
 
