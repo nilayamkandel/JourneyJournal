@@ -22,6 +22,7 @@ import com.google.firebase.auth.internal.zzx;
 
 import np.com.neelayamkandel.journeyjournal.R;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
+import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseAuthImpl;
 import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 
 public class HomeActivity extends AppCompatActivity {
@@ -32,13 +33,13 @@ public class HomeActivity extends AppCompatActivity {
     private NavHostFragment navHostFragment;
     private NavController navController;
     private FloatingActionButton floating_action_button;
+    private FirebaseAuthImpl firebaseAuth = new FirebaseAuthImpl();
+
     public void extractElementFromIntent(){
         if(getIntent()!= null){
             firebaseuser = getIntent().getParcelableExtra("USER");
             registration = (Registration) getIntent().getSerializableExtra("PROFILE");
             Log.d(TAG, "extractElementFromIntent: " + firebaseuser.getUid());
-
-
         }
 
     }
@@ -97,6 +98,7 @@ public class HomeActivity extends AppCompatActivity {
         if (menuItem == R.id.profile) {
              navController.navigate(R.id.profileFragment);
         } else if (menuItem == R.id.logout) {
+            firebaseAuth.Logout();
            startActivity(new Intent(this, AuthActivity.class));
             finish();
         }

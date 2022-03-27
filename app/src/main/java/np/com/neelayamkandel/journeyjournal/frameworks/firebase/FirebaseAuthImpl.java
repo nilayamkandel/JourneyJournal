@@ -125,5 +125,10 @@ public class FirebaseAuthImpl {
         });
         return isResetSuccess;
     }
+
+    public void Logout(){
+        auth.signOut();
+        isLoginSuccess.postValue(new UserProfileModel(false));
+    }
 }
 

@@ -8,6 +8,9 @@ public class UserProfileModel extends SuccessHelper {
         return loginProfile;
     }
 
+    public UserProfileModel(boolean isSuccess) {
+        super(isSuccess);
+    }
     public void setLoginProfile(LoginProfile loginProfile) {
         this.loginProfile = loginProfile;
     }
@@ -18,7 +21,5 @@ public class UserProfileModel extends SuccessHelper {
         super(isSuccess, message);
     }
 
-    public UserProfileModel(boolean isSuccess) {
-        super(isSuccess);
-    }
+
 }
