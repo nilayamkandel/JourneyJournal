@@ -56,6 +56,7 @@ public class ProfileFragment extends Fragment {
 
     private void handleButtonTrigger(){
         btn_update.setOnClickListener(event->{
+            Log.d(TAG, "handleButtonTrigger: "+ image);
         profileViewModel.UpdateProfile(firebaseuser,
                 new Registration(pp_userName.getEditText().getText().toString().trim(),
                 registration.getEmail()),uri, getContext(), getViewLifecycleOwner(),camera, image);
@@ -66,9 +67,9 @@ public class ProfileFragment extends Fragment {
             startActivityForResult(gallery, GalleryRequestCode);
         });
         pp_camera.setOnClickListener(event->{
-            camera  = false;
-            Intent gallery = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(gallery, CameraRequestCode);
+            camera  = true;
+            Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(camera, CameraRequestCode);
         });
 
     }

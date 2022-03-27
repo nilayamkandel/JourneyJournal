@@ -139,6 +139,8 @@ public class FirebaseAuthImpl {
 
     public MutableLiveData<SuccessHelper> UpdateProfile(FirebaseUser firebaseUser, Registration registration, Uri Image, Context context, LifecycleOwner lifecycleOwner, boolean Camera, Bitmap bitmap){
         //step-1 upload image
+        Log.d(TAG, "UpdateProfile: uri"+ Image );
+        Log.d(TAG, "UpdateProfile: bitmap "+ bitmap +"condition "+Camera);
         if(Image != null || bitmap != null) {
             if (Camera) {
                 storage.UploadBitmap(bitmap, "Images/Profile/", firebaseUser.getEmail(), context);

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -17,7 +18,7 @@ import np.com.neelayamkandel.journeyjournal.dao.helper.SuccessHelper;
 
 public class FirebaseStorageImpl {
     private final FirebaseStorage storage= FirebaseStorage.getInstance();
-
+    private String TAG = "J_" + FirebaseStorageImpl.class.getSimpleName();
     public MutableLiveData<SuccessHelper> getIsUploadSuccess() {
         return IsUploadSuccess;
     }
@@ -31,6 +32,7 @@ public class FirebaseStorageImpl {
 
 
     public void UploadBitmap(Bitmap image, String Filepath, String Filename, Context context){
+        Log.d(TAG, "UploadBitmap: " + image.toString());
         if(image != null && Filename != null && Filepath != null ){
             final ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.setTitle("Image uploading...");
