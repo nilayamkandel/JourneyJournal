@@ -39,37 +39,48 @@
         app:layout_constraintBottom_toBottomOf="@+id/pp_camera"
         app:layout_constraintEnd_toEndOf="@+id/pp_camera" />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pp_email"
         android:layout_width="374dp"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:hint="@string/email"
         android:textSize="22sp"
         app:layout_constraintTop_toBottomOf="@+id/pp_Img"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="16dp" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pp_userName"
         android:layout_width="374dp"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="@string/userName"
         android:textSize="22sp"
         app:layout_constraintTop_toBottomOf="@+id/pp_email"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="16dp" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="288dp"
+        android:layout_marginStart="248dp"
         android:layout_marginTop="32dp"
         android:drawableLeft="@drawable/ic_baseline_update"
-        app:layout_constraintStart_toStartOf="parent"
         android:text="@string/update"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pp_userName" />
 
 

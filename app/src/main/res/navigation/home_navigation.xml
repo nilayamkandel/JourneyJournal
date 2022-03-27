@@ -18,17 +18,6 @@
             app:argType="boolean" />
     </fragment>
 
-    <fragment
-        android:id="@+id/editFragment"
-        android:name="np.com.neelayamkandel.journeyjournal.presentation.fragment.home.EditFragment"
-        android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" >
-        <argument
-            android:name="@string/args_show_fab"
-            android:defaultValue="false"
-            app:argType="boolean" />
-    </fragment>
-
 
     <fragment
         android:id="@+id/dashboardFragment"

@@ -25,11 +25,12 @@ public class CommonViewModel extends AndroidViewModel {
     public void CacheHandler(Activity activity, LifecycleOwner lifecycleOwner){
 
         firebaseAuth.getIsLoginSuccess().observe(lifecycleOwner, userProfileModel -> {
-            Log.d(TAG, "CacheHandler: " + userProfileModel.getLoginProfile().getFirebaseUser().getUid());
+            Log.d(TAG, "CacheHandler: " + userProfileModel.getLoginProfile().getFirebaseUser().getPhotoUrl());
             if(userProfileModel != null){
                 Intent intent = new Intent(activity, HomeActivity.class);
                 intent.putExtra("USER", userProfileModel.getLoginProfile().getFirebaseUser());
                 intent.putExtra("PROFILE", userProfileModel.getLoginProfile().getRegistration());
+                intent.putExtra("IMAGE",userProfileModel.getLoginProfile().getFirebaseUser().getPhotoUrl().toString());
                 activity.startActivity(intent);
                 activity.finish();
             }

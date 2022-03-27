@@ -33,13 +33,15 @@ public class HomeActivity extends AppCompatActivity {
     private NavHostFragment navHostFragment;
     private NavController navController;
     private FloatingActionButton floating_action_button;
+    private String image;
     private FirebaseAuthImpl firebaseAuth = new FirebaseAuthImpl();
 
     public void extractElementFromIntent(){
         if(getIntent()!= null){
             firebaseuser = getIntent().getParcelableExtra("USER");
             registration = (Registration) getIntent().getSerializableExtra("PROFILE");
-            Log.d(TAG, "extractElementFromIntent: " + firebaseuser.getUid());
+            image = getIntent().getStringExtra("IMAGE");
+            Log.d(TAG, "extractElementFromIntent: " + image);
         }
 
     }
@@ -96,7 +98,11 @@ public class HomeActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         int menuItem = item.getItemId();
         if (menuItem == R.id.profile) {
-             navController.navigate(R.id.profileFragment);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("USER", firebaseuser);
+            bundle.putSerializable("PROFILE", registration);
+            bundle.putString("IMAGE", image);
+            navController.navigate(R.id.profileFragment, bundle);
         } else if (menuItem == R.id.logout) {
             firebaseAuth.Logout();
            startActivity(new Intent(this, AuthActivity.class));

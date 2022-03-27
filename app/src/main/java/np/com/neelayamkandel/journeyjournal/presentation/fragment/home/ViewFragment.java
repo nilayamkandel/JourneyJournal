@@ -28,14 +28,15 @@ public class ViewFragment extends Fragment implements  DashboardHelper {
     private TextInputLayout view_Title;
     private TextInputLayout view_Date;
     private TextInputLayout view_Description;
+    private Button view_btnSave;
 
 
     private void handleButtonTrigger() {
-        view_btnEdit.setOnClickListener(event->navController.navigate(R.id.editFragment));
+
     }
 
     private void extractElements(View view){
-        view_btnEdit = view.findViewById(R.id.view_btnEdit);
+        view_btnSave= view.findViewById(R.id.view_btnSave);
         view_btnDelete = view.findViewById(R.id.view_btnDelete);
         view_Title = view.findViewById(R.id.view_Title);
         view_Date = view.findViewById(R.id.view_Title);
@@ -65,6 +66,6 @@ public class ViewFragment extends Fragment implements  DashboardHelper {
 
     public void SetOnItemClickListener() {
 //        TODO: Import data
-        navController.navigate(R.id.editFragment);
+
     }
 }

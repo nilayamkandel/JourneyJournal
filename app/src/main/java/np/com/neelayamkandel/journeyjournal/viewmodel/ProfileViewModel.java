@@ -20,6 +20,11 @@ import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 public class ProfileViewModel extends AndroidViewModel {
     private final FirebaseAuthImpl firebaseAuth = new FirebaseAuthImpl();
 
+    public MutableLiveData<HelperViewModel> getIsDisplayNameEmpty() {
+        return isDisplayNameEmpty;
+    }
+
+    public final MutableLiveData<HelperViewModel> isDisplayNameEmpty = new MutableLiveData<>();
     public MutableLiveData<SuccessHelper> getIsProfileMaintainSuccess() {
         return isProfileMaintainSuccess;
     }
@@ -31,9 +36,19 @@ public class ProfileViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void UpdateProfile(FirebaseUser firebaseUser, Registration registration, Uri Image, Context context, LifecycleOwner lifecycleOwner, boolean Camera, Bitmap bitmap){
-       firebaseAuth.UpdateProfile(firebaseUser, registration, Image, context, lifecycleOwner, Camera, bitmap).observe(lifecycleOwner,updateProfile->{
-           isProfileMaintainSuccess.postValue(updateProfile);
-       });
+    public void UpdateProfile(FirebaseUser firebaseUser, Registration registration, Uri Image, Context context,
+                              LifecycleOwner lifecycleOwner, boolean Camera, Bitmap bitmap){
+        if (registration.getDisplayName().isEmpty()) {
+            isDisplayNameEmpty.setValue(new HelperViewModel(true, "Username field is empty"));
+            return;
+        } else {
+            isDisplayNameEmpty.setValue(new HelperViewModel(false));
+        }
+        if(registration.getDisplayName()!= null) {
+            firebaseAuth.UpdateProfile(firebaseUser, registration, Image, context, lifecycleOwner,
+                    Camera, bitmap).observe(lifecycleOwner, updateProfile -> {
+                isProfileMaintainSuccess.postValue(updateProfile);
+            });
+        }
     }
 }

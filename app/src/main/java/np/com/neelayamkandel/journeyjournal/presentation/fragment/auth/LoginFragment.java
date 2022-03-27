@@ -84,12 +84,11 @@ public class LoginFragment extends Fragment {
                                 .getLoginProfile()
                                 .getFirebaseUser()
                         .getUid());
+                        Log.d(TAG, "observeIsLoginSuccess: " + userProfileModel.getLoginProfile().getFirebaseUser().getPhotoUrl());
                         Intent intent = new Intent(requireActivity(), HomeActivity.class);
                         intent.putExtra("USER", userProfileModel.getLoginProfile().getFirebaseUser());
                         intent.putExtra("PROFILE", (Serializable) userProfileModel.getLoginProfile().getRegistration());
-                        if(userProfileModel.getLoginProfile()){
-
-                        }
+                        intent.putExtra("IMAGE",userProfileModel.getLoginProfile().getFirebaseUser().getPhotoUrl());
                         startActivity(intent);
                         requireActivity().finish();
                     }

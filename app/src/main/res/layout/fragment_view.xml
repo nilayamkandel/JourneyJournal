@@ -92,37 +92,32 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
     <Button
-        android:id="@+id/view_btnEdit"
+        android:id="@+id/view_btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart="128dp"
         android:layout_marginBottom="8dp"
-        android:drawableLeft="@drawable/ic_baseline_edit_24"
+        android:drawableLeft="@drawable/ic_baseline_save"
         android:padding="10dp"
-        android:text="@string/edt"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/view_btnDelete"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_Description"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintVertical_bias="0.758" />
 
     <Button
         android:id="@+id/view_btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="244dp"
         android:layout_marginBottom="8dp"
         android:drawableLeft="@drawable/ic_baseline_delete_24"
         android:padding="10dp"
         android:text="@string/dlt"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_Description"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintVertical_bias="0.758" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
