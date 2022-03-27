@@ -1,20 +1,16 @@
 package np.com.neelayamkandel.journeyjournal.viewmodel;
 
 import android.app.Application;
-import android.nfc.Tag;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import np.com.neelayamkandel.journeyjournal.dao.auth.login.Login;
 import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseAuthImpl;
-import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
-import np.com.neelayamkandel.journeyjournal.presentation.fragment.auth.LoginFragment;
+import np.com.neelayamkandel.journeyjournal.model.home.UserProfileModel;
 
 public class LoginViewModel extends AndroidViewModel {
     private String TAG =  "J_" + LoginViewModel.class.getSimpleName();

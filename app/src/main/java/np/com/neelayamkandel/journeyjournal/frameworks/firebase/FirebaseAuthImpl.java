@@ -18,7 +18,7 @@ import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.RegistrationForm;
 import np.com.neelayamkandel.journeyjournal.dao.helper.SuccessHelper;
 import np.com.neelayamkandel.journeyjournal.model.auth.RegistrationModel;
-import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
+import np.com.neelayamkandel.journeyjournal.model.home.UserProfileModel;
 import np.com.neelayamkandel.journeyjournal.viewmodel.HelperViewModel;
 
 public class FirebaseAuthImpl {

@@ -1,4 +1,4 @@
-package np.com.neelayamkandel.journeyjournal.model.auth;
+package np.com.neelayamkandel.journeyjournal.model.home;
 
 import np.com.neelayamkandel.journeyjournal.dao.auth.login.LoginProfile;
 import np.com.neelayamkandel.journeyjournal.dao.helper.SuccessHelper;

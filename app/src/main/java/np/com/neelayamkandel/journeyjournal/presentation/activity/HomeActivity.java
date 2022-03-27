@@ -18,12 +18,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.internal.zzx;
 
 import np.com.neelayamkandel.journeyjournal.R;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
 import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseAuthImpl;
-import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 
 public class HomeActivity extends AppCompatActivity {
     private String TAG =  "J_" + HomeActivity.class.getSimpleName();

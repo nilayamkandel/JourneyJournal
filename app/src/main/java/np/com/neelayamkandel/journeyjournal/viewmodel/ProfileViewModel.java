@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
 import np.com.neelayamkandel.journeyjournal.dao.helper.SuccessHelper;
 import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseAuthImpl;
-import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 
 public class ProfileViewModel extends AndroidViewModel {
     private final FirebaseAuthImpl firebaseAuth = new FirebaseAuthImpl();

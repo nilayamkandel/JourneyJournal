@@ -3,14 +3,9 @@ package np.com.neelayamkandel.journeyjournal.presentation.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import java.io.Serializable;
-
 import np.com.neelayamkandel.journeyjournal.R;
-import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseAuthImpl;
-import np.com.neelayamkandel.journeyjournal.model.auth.UserProfileModel;
 import np.com.neelayamkandel.journeyjournal.viewmodel.CommonViewModel;
 
 public class AuthActivity extends AppCompatActivity {
