@@ -33,12 +33,13 @@ public class FirebaseAuthImpl {
             database.getDatabase().getReference("Account")
                     .child(auth.getCurrentUser().getUid())
             .get().addOnCompleteListener(userData->{
+                Log.d(TAG, "FirebaseAuthImpl: " + userData.isSuccessful());
                 UserProfileModel userProfileModel = new UserProfileModel(true, "Welcome Back!!");
                 userProfileModel.setLoginProfile(new LoginProfile(
                         userData.getResult().getValue(Registration.class),
                         auth.getCurrentUser()
                 ));
-
+                isLoginSuccess.postValue(userProfileModel);
             });
         }
     }
