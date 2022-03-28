@@ -19,16 +19,6 @@
             android:src="@drawable/ic_baseline_image_24" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txt_Id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image"
-            android:layout_marginStart="10dp"
-            android:layout_toStartOf="@+id/image"
-            android:padding="10dp"
-            android:visibility="invisible" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txt_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

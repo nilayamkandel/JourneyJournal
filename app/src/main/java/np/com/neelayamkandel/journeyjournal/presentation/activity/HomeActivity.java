@@ -80,6 +80,7 @@ public class HomeActivity extends AppCompatActivity {
                // Show Fab on False
                 floating_action_button.setVisibility(View.GONE);
             }
+            bundle.putParcelable("USER", firebaseuser);
         });
     }
 

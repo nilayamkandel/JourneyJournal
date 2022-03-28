@@ -12,18 +12,28 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+
 import np.com.neelayamkandel.journeyjournal.R;
+import np.com.neelayamkandel.journeyjournal.dao.auth.registration.Registration;
+import np.com.neelayamkandel.journeyjournal.dao.home.JourneyRecyclerDao;
 import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseDbImpl;
 
 public class DashboardFragment extends Fragment implements  DashboardHelper {
+    private String TAG = "J_" + DashboardFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private DashboardRecyclerViewAdapter dashboardRecyclerViewAdapter;
     private NavController navController;
+    private FirebaseUser firebaseUser;
+    private ArrayList<JourneyRecyclerDao> journeyRecyclerDaos= new ArrayList<>();
     private FirebaseDbImpl databaseImpl = new FirebaseDbImpl();
 
     private void extractElements(View view){
@@ -32,7 +42,23 @@ public class DashboardFragment extends Fragment implements  DashboardHelper {
 
         this.linearLayoutManager = new LinearLayoutManager(context);
         this.recyclerView = view.findViewById(R.id.rV);
-        this.dashboardRecyclerViewAdapter = new DashboardRecyclerViewAdapter(this);
+        this.databaseImpl.FetchJourney(firebaseUser.getUid());
+        this.dashboardRecyclerViewAdapter = new DashboardRecyclerViewAdapter(this,journeyRecyclerDaos, getViewLifecycleOwner() );
+
+    }
+    private void ObserveMutableLiveData(){
+        databaseImpl.Fetchjourney.observe(getViewLifecycleOwner(), journeyRecyclerDaos -> {
+            this.dashboardRecyclerViewAdapter = new DashboardRecyclerViewAdapter(
+                    this,journeyRecyclerDaos, getViewLifecycleOwner() );
+            this.recyclerView.setAdapter(dashboardRecyclerViewAdapter);
+        });
+    }
+
+    private void extractElementsFromIntent(){
+        if(requireActivity().getIntent()!= null){
+            firebaseUser = requireActivity().getIntent().getParcelableExtra("USER");
+            Log.d(TAG, "extractElementsFromIntent: " + firebaseUser.getUid());
+        }
     }
 
     private void initListElement(){
@@ -49,6 +75,7 @@ public class DashboardFragment extends Fragment implements  DashboardHelper {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        this.extractElementsFromIntent();
         this.extractElements(view);
         return view;
     }
@@ -57,10 +84,12 @@ public class DashboardFragment extends Fragment implements  DashboardHelper {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.initListElement();
+        this.ObserveMutableLiveData();
     }
     @Override
-    public void SetOnItemClickListener() {
-//        TODO: Import data
-        navController.navigate(R.id.viewFragment);
+    public void SetOnItemClickListener(JourneyRecyclerDao journeyrecycler) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("JOURNEYRECYCLERDAO",journeyrecycler);
+        navController.navigate(R.id.viewFragment, bundle);
     }
 }

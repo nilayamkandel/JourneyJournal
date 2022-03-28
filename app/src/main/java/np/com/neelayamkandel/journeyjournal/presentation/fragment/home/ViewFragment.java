@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import com.google.android.material.textfield.TextInputLayout;
 
 import np.com.neelayamkandel.journeyjournal.R;
+import np.com.neelayamkandel.journeyjournal.dao.home.JourneyRecyclerDao;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardHelper;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardRecyclerViewAdapter;
 
@@ -29,6 +31,7 @@ public class ViewFragment extends Fragment implements  DashboardHelper {
     private TextInputLayout view_Date;
     private TextInputLayout view_Description;
     private Button view_btnSave;
+    private String TAG = "J_" + ViewFragment.class.getSimpleName();
 
 
     private void handleButtonTrigger() {
@@ -67,5 +70,10 @@ public class ViewFragment extends Fragment implements  DashboardHelper {
     public void SetOnItemClickListener() {
 //        TODO: Import data
 
+    }
+
+    @Override
+    public void SetOnItemClickListener(JourneyRecyclerDao journeyrecycler) {
+        Log.d(TAG, "SetOnItemClickListener: " + journeyrecycler.getUuid());
     }
 }
