@@ -51,6 +51,7 @@ public class ViewFragment extends Fragment {
     private TextInputLayout view_Description;
     private JourneyRecyclerDao journeyRecyclerDao;
     private Button view_btnSave;
+    private Button view_btnShare;
     private String TAG = "J_" + ViewFragment.class.getSimpleName();
     private Uri uri;
     private Bitmap image;
@@ -89,6 +90,15 @@ public class ViewFragment extends Fragment {
             Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(camera, CameraRequestCode);
         });
+
+        view_btnShare.setOnClickListener(event->{
+            JourneyDao journeyDao = journeyRecyclerDao.getJourney();
+            Intent Share = new Intent(Intent.ACTION_SEND);
+            Share.setType("text/plain");
+            String data = journeyDao.getTitle() + "\n\n" + journeyDao.getDescription() + "\n\n" + journeyDao.getDate();
+            Share.putExtra(Intent.EXTRA_TEXT, data );
+            startActivity(Intent.createChooser(Share, "Share Via"));
+        });
     }
 
     private void extractElementsFromIntent(Bundle bundle){
@@ -112,6 +122,7 @@ public class ViewFragment extends Fragment {
         view_Title = view.findViewById(R.id.view_Title);
         view_Date = view.findViewById(R.id.view_Date);
         view_Description = view.findViewById(R.id.view_Description);
+        view_btnShare = view.findViewById(R.id.view_btnShare);
     }
 
     private  void PopulateData(){
