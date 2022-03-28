@@ -1,23 +1,31 @@
 package np.com.neelayamkandel.journeyjournal.presentation.fragment.home;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import np.com.neelayamkandel.journeyjournal.R;
@@ -25,11 +33,16 @@ import np.com.neelayamkandel.journeyjournal.dao.home.JourneyDao;
 import np.com.neelayamkandel.journeyjournal.dao.home.JourneyRecyclerDao;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardHelper;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardRecyclerViewAdapter;
+import np.com.neelayamkandel.journeyjournal.viewmodel.CreateEditViewModel;
 
 public class ViewFragment extends Fragment {
+    private static final int CameraRequestCode = 102;
+    private static final int GalleryRequestCode = 105;
+    private CreateEditViewModel createEditViewModel;
     private NavController navController;
-    private Button view_btnEdit;
     private Button view_btnDelete;
+    private FloatingActionButton vp_gallery;
+    private FloatingActionButton vp_camera;
     private TextInputLayout view_Title;
     private ImageView view_image;
     private TextInputLayout view_Date;
@@ -37,10 +50,37 @@ public class ViewFragment extends Fragment {
     private JourneyRecyclerDao journeyRecyclerDao;
     private Button view_btnSave;
     private String TAG = "J_" + ViewFragment.class.getSimpleName();
-
+    private Uri uri;
+    private Bitmap image;
+    private boolean camera = false;
 
     private void handleButtonTrigger() {
+        view_btnSave.setOnClickListener(event->{
+            createEditViewModel.validateUpdateCredentials(
+                    journeyRecyclerDao.getUuid(),
+                    new JourneyDao(
+                            journeyRecyclerDao.getJourney().getUser(),
+                            journeyRecyclerDao.getJourney().getImageUri(),
+                            view_Title.getEditText().getText().toString().trim(),
+                            view_Date.getEditText().getText().toString().trim(),
+                            view_Description.getEditText().getText().toString().trim()
+                    ),uri, getContext(), getViewLifecycleOwner(),camera, image
+            );
+//            Intent intent = new Intent(requireActivity(), HomeActivity.class);
+//            startActivity(intent);
+//            requireActivity().finish();
+        });
 
+        vp_gallery.setOnClickListener(event->{
+            camera  = false;
+            Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(gallery, GalleryRequestCode);
+        });
+        vp_camera.setOnClickListener(event->{
+            camera  = true;
+            Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(camera, CameraRequestCode);
+        });
     }
 
     private void extractElementsFromIntent(Bundle bundle){
@@ -50,8 +90,15 @@ public class ViewFragment extends Fragment {
         }
     }
 
+    private void bindViewModel() {
+        createEditViewModel = new ViewModelProvider(this)
+                .get(CreateEditViewModel.class);
+    }
+
     private void extractElements(View view){
         view_btnSave= view.findViewById(R.id.view_btnSave);
+        vp_camera= view.findViewById(R.id.vp_camera);
+        vp_gallery= view.findViewById(R.id.vp_gallery);
         view_image= view.findViewById(R.id.view_image);
         view_btnDelete = view.findViewById(R.id.view_btnDelete);
         view_Title = view.findViewById(R.id.view_Title);
@@ -71,10 +118,54 @@ public class ViewFragment extends Fragment {
             view_Date.getEditText().setText(journeyDao.getDate());
             view_Description.getEditText().setText(journeyDao.getDescription());
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == CameraRequestCode){
+            if(resultCode == Activity.RESULT_OK){
+                image = (Bitmap) data.getExtras().get("data");
+                uri = null;
+                view_image.setImageBitmap(image);
+            }
+        }
+
+        if(requestCode == GalleryRequestCode){
+            if(resultCode == Activity.RESULT_OK){
+                uri = data.getData();
+                image = null;
+                view_image.setImageURI(uri);
+            }
+        }
+    }
+
+    private void observeMutableLiveData(){
+        observeIsTitleEmpty();
+        createEditViewModel.isUpdateSuccess.observe(getViewLifecycleOwner(),journeyModel -> {
+            Toast.makeText(getContext(),journeyModel.getMessage(),Toast.LENGTH_LONG).show();
+            if(journeyModel.isSuccess()){
+                navController.navigate(R.id.dashboardFragment);
+            }
+        });
+
+    }
+
+    private void observeIsTitleEmpty() {
+        createEditViewModel.isTitleEmpty.observe(
+                getViewLifecycleOwner(), helperViewModel -> {
+                    if(helperViewModel.isSuccess()){
+                        view_Title.setError(helperViewModel.getMessage());
+                    }
+                    else{
+                        view_Title.setError(null);
+                    }
+
+                });
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bindViewModel();
     }
 
     @Override
@@ -92,6 +183,7 @@ public class ViewFragment extends Fragment {
         navController= Navigation.findNavController(view);
         this.handleButtonTrigger();
         this.PopulateData();
+        observeMutableLiveData();
     }
 
 }
