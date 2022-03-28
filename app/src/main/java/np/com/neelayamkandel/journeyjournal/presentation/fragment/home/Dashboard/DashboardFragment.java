@@ -89,6 +89,7 @@ public class DashboardFragment extends Fragment implements  DashboardHelper {
     @Override
     public void SetOnItemClickListener(JourneyRecyclerDao journeyrecycler) {
         Bundle bundle = new Bundle();
+        Log.d(TAG, "SetOnItemClickListener: " + journeyrecycler.getUuid());
         bundle.putSerializable("JOURNEYRECYCLERDAO",journeyrecycler);
         navController.navigate(R.id.viewFragment, bundle);
     }
