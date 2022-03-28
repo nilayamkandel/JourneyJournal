@@ -31,6 +31,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import np.com.neelayamkandel.journeyjournal.R;
 import np.com.neelayamkandel.journeyjournal.dao.home.JourneyDao;
 import np.com.neelayamkandel.journeyjournal.dao.home.JourneyRecyclerDao;
+import np.com.neelayamkandel.journeyjournal.frameworks.firebase.FirebaseDbImpl;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardHelper;
 import np.com.neelayamkandel.journeyjournal.presentation.fragment.home.Dashboard.DashboardRecyclerViewAdapter;
 import np.com.neelayamkandel.journeyjournal.viewmodel.CreateEditViewModel;
@@ -40,6 +41,7 @@ public class ViewFragment extends Fragment {
     private static final int GalleryRequestCode = 105;
     private CreateEditViewModel createEditViewModel;
     private NavController navController;
+    private FirebaseDbImpl firebaseDb = new FirebaseDbImpl();
     private Button view_btnDelete;
     private FloatingActionButton vp_gallery;
     private FloatingActionButton vp_camera;
@@ -66,9 +68,15 @@ public class ViewFragment extends Fragment {
                             view_Description.getEditText().getText().toString().trim()
                     ),uri, getContext(), getViewLifecycleOwner(),camera, image
             );
-//            Intent intent = new Intent(requireActivity(), HomeActivity.class);
-//            startActivity(intent);
-//            requireActivity().finish();
+        });
+        view_btnDelete.setOnClickListener(event->{
+            firebaseDb.DeleteJourney(journeyRecyclerDao.getJourney(), journeyRecyclerDao.getUuid(), getViewLifecycleOwner());
+            firebaseDb.Deletejourney.observe(getViewLifecycleOwner(), successHelper -> {
+                Toast.makeText(getContext(), successHelper.getMessage(), Toast.LENGTH_LONG).show();
+                if(successHelper.isSuccess()){
+                    navController.navigate(R.id.dashboardFragment);
+                }
+            });
         });
 
         vp_gallery.setOnClickListener(event->{
@@ -160,7 +168,6 @@ public class ViewFragment extends Fragment {
 
                 });
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
