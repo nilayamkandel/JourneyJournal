@@ -40,7 +40,7 @@ public class FirebaseAuthImpl {
                     .child(auth.getCurrentUser().getUid())
             .get().addOnCompleteListener(userData->{
                 Log.d(TAG, "FirebaseAuthImpl: " + userData.isSuccessful());
-                UserProfileModel userProfileModel = new UserProfileModel(true, "Welcome Back!!");
+                UserProfileModel userProfileModel = new UserProfileModel(true, "Welcome to the Dashboard");
                 userProfileModel.setLoginProfile(new LoginProfile(
                         userData.getResult().getValue(Registration.class),
                         auth.getCurrentUser()

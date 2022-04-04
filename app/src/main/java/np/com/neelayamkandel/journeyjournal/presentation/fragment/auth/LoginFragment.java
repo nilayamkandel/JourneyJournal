@@ -1,7 +1,10 @@
 package np.com.neelayamkandel.journeyjournal.presentation.fragment.auth;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +41,8 @@ public class LoginFragment extends Fragment {
     private TextInputLayout lp_tfEmail;
     private TextInputLayout lp_tfPassword;
     private TextView ForgetPassword;
+    private ImageButton lp_Fab;
+    private ImageButton lp_Twitter;
     private NavController navController;
     private LoginViewModel loginViewModel;
 
@@ -47,6 +54,22 @@ public class LoginFragment extends Fragment {
                     lp_tfPassword.getEditText().getText().toString().trim(), getViewLifecycleOwner());
         });
         ForgetPassword.setOnClickListener(event->navController.navigate(R.id.action_loginFragment_to_forgetPasswordFragment));
+        lp_Fab.setOnClickListener(event->{
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Oops :)");
+            builder.setMessage("Working on it..");
+            builder.setNegativeButton("No",  (dialog, id) -> dialog.dismiss());
+            AlertDialog alert = builder.create();
+            alert.show();
+        });
+        lp_Twitter.setOnClickListener(event->{
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Oops :)");
+            builder.setMessage("Working on it..");
+            builder.setNegativeButton("No",  (dialog, id) -> dialog.dismiss());
+            AlertDialog alert = builder.create();
+            alert.show();
+        });
     }
 
     private void extractElements(View view){
@@ -55,6 +78,8 @@ public class LoginFragment extends Fragment {
         ForgetPassword = view.findViewById(R.id.tv_ForgetPwd);
         lp_tfEmail = view.findViewById(R.id.lp_tfEmail);
         lp_tfPassword = view.findViewById(R.id.lp_tfPassword);
+        lp_Fab = view.findViewById(R.id.lp_Fab);
+        lp_Twitter = view.findViewById(R.id.lp_Twitter);
     }
 
     @Override

@@ -79,6 +79,7 @@
         android:layout_marginStart="248dp"
         android:layout_marginTop="32dp"
         android:drawableLeft="@drawable/ic_baseline_update"
+        android:backgroundTint="@color/secondaryColor"
         android:text="@string/update"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pp_userName" />

@@ -131,7 +131,7 @@ public class ViewFragment extends Fragment {
             Glide.with(requireContext()).load(journeyDao.getImageUri()).into(view_image);
         }
             else{
-            view_image.setImageResource(R.drawable.img);
+            view_image.setImageResource(R.drawable.cardview);
             }
             view_Title.getEditText().setText(journeyDao.getTitle());
             view_Date.getEditText().setText(journeyDao.getDate());

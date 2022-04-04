@@ -51,7 +51,7 @@ public class DashboardRecyclerViewAdapter extends RecyclerView.Adapter<Dashboard
             Glide.with(context).load(journeyDao.getJourney().getImageUri()).into(holder.image);
         }
         else{
-            holder.image.setImageResource(R.drawable.img);
+            holder.image.setImageResource(R.drawable.cardview);
         }
         holder.txt_Title.setText(journeyDao.getJourney().getTitle());
         holder.txt_Date.setText(journeyDao.getJourney().getDate());

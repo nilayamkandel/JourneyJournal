@@ -3,7 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_add.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_add_card_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_add_circle.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_gallery.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_note_add_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_notes_24.xml" value="0.2203125" />
         <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2046875" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_photo_camera.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_save.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_title.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_baseline_update.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_person.xml" value="0.2203125" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/drawable/ic_twitter.xml" value="0.2203125" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/activity_auth.xml" value="0.18854166666666666" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/card_view.xml" value="0.20416666666666666" />
@@ -12,11 +35,11 @@
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_edit.xml" value="0.2" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_forget_password.xml" value="0.20416666666666666" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_landing.xml" value="0.20416666666666666" />
-        <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_register.xml" value="0.22" />
         <entry key="..\:/JourneyJournal/app/src/main/res/layout/fragment_view.xml" value="0.20416666666666666" />
-        <entry key="..\:/JourneyJournal/app/src/main/res/menu/option_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/JourneyJournal/app/src/main/res/menu/option_menu.xml" value="0.33" />
       </map>
     </option>
   </component>

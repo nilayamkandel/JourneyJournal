@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragment.home.ViewFragment"
-    android:background="@drawable/home4"
+    android:background="@drawable/home"
     >
 
     <ImageView
@@ -24,23 +24,22 @@
         android:id="@+id/vp_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="4dp"
         android:layout_toEndOf="@+id/view_image"
         android:src="@drawable/ic_baseline_photo_camera"
-        app:layout_constraintBottom_toBottomOf="@+id/view_image"
-        app:layout_constraintEnd_toEndOf= "@+id/view_image"
-        />
+        app:layout_constraintEnd_toEndOf="@+id/view_image"
+        app:layout_constraintTop_toBottomOf="@+id/view_image" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/vp_gallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="88dp"
         android:layout_toEndOf="@+id/vp_camera"
         android:src="@drawable/ic_baseline_gallery"
         app:layout_constraintBottom_toBottomOf="@+id/vp_camera"
         app:layout_constraintEnd_toEndOf="@+id/vp_camera" />
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/view_Title"
@@ -51,10 +50,11 @@
         app:layout_constraintHeight="55dp"
         android:layout_margin="31dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_image">
+        app:layout_constraintTop_toBottomOf="@+id/vp_gallery">
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,7 +96,7 @@
         android:id="@+id/view_btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="28dp"
         android:layout_marginBottom="8dp"
         android:drawableLeft="@drawable/ic_baseline_save"
         android:padding="10dp"
@@ -104,13 +104,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_Description"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.72" />
 
     <Button
         android:id="@+id/view_btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="268dp"
+        android:layout_marginStart="236dp"
         android:layout_marginBottom="8dp"
         android:drawableLeft="@drawable/ic_baseline_delete_24"
         android:padding="10dp"
@@ -118,20 +118,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_Description"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.72" />
 
     <Button
         android:id="@+id/view_btnShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
+        android:layout_marginStart="128dp"
         android:layout_marginBottom="8dp"
-        android:drawableLeft="@drawable/ic_baseline_delete_24"
+        android:drawableLeft="@drawable/ic_baseline_share_24"
         android:padding="10dp"
         android:text="@string/share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_Description"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.72" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

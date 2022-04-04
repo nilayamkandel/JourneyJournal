@@ -30,7 +30,9 @@ public class CommonViewModel extends AndroidViewModel {
                 Intent intent = new Intent(activity, HomeActivity.class);
                 intent.putExtra("USER", userProfileModel.getLoginProfile().getFirebaseUser());
                 intent.putExtra("PROFILE", userProfileModel.getLoginProfile().getRegistration());
-                intent.putExtra("IMAGE",userProfileModel.getLoginProfile().getFirebaseUser().getPhotoUrl().toString());
+                if(userProfileModel.getLoginProfile().getFirebaseUser().getPhotoUrl() != null){
+                    intent.putExtra("IMAGE",userProfileModel.getLoginProfile().getFirebaseUser().getPhotoUrl().toString());
+                }
                 activity.startActivity(intent);
                 activity.finish();
             }
