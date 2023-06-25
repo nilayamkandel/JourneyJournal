@@ -12,7 +12,7 @@ An Android application for storing the journal during the journey.
     - [**Wireframe**](#wireframe)
     - [**Design Mockup**](#design-mockup)
     - [**Application Screen Hierarchy**](#application-screen-hierarchy)
-    - [**Application Flow Chart**](#application-flow-chart)
+    
 
 
 ## **Detail**
@@ -57,10 +57,11 @@ Design mockup of app is created using **Figma**.
 <a href="https://www.figma.com/file/L75wjjChyxW6SHhwplQpfq/Android?type=design&node-id=7-45&mode=design&t=QWRiZKlFiXfsOKPI-0">
 <img  alt="Mockup" >
 </a>
-
-                  
-                  
+               
 ### **Application Screen Hierarchy**
+Screen Hierarchy of application is made using Figma
+<a href="https://www.figma.com/file/AgffTLtGWENgvshBuudIQh/ScreenHierarchy?type=design&node-id=0-1&mode=design&t=QWRiZKlFiXfsOKPI-0">
+<img alt="Screen Hierarchy">
+</a>
 
-### **Application Flow Chart**
 
